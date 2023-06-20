@@ -25,10 +25,10 @@ Route::get('/sobrenos',[\App\Http\Controllers\SobreNosController::class, 'sobreN
 Route::get('/contato',[\App\Http\Controllers\ContatoController::class, 'contato']);
 
 Route::get(
-    '/contato/{name?}/{category?}/{message?}', 
+    '/contato/{name}/{category_id}', 
     function(
         string $name = 'UnKnown', 
-        string $category = 'Uninformed Categoy', 
-        string $message = 'Uninformed Message'){
-    echo 'We are here: ' . $name . ' - ' . $category  . ' - ' . $message;
-});
+        int $category_id = 1, 
+        ){
+    echo 'We are here: ' . $name . ' - ' . $category_id;
+})->where('category_id', '[0-9]+')->where('name','[A-Za-z]+');
